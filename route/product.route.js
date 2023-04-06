@@ -7,4 +7,14 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../controller/product.controller");
-const {va} = require("../validate/product.validate");
+const { validateProduct } = require("../validate/product.validate");
+
+const router = Router();
+
+router.get("/", findAllProduct);
+router.get("/:id", findByIdProduct);
+router.post("/", validateProduct, createProduct);
+router.put("/:id", updateProduct);
+router.delete("/:id", deleteProduct);
+
+module.exports = router;
