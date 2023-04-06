@@ -100,9 +100,7 @@ const updateProduct = async (req, res, next) => {
 
 const deleteProduct = async (req, res, next) => {
   try {
-    const { id } = req.params;
-      _id: id,
-    });
+    const product = await Product.findByIdAndDelete(req.params.id);
 
     if (!product)
       return res.status(404).json({
