@@ -4,6 +4,6 @@ const product = require("./product.route");
 
 const router = express.Router();
 
-router.use("api/v1", product);
+router.use("/product", product);
 
 module.exports = router;

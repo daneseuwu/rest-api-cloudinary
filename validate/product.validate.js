@@ -5,13 +5,13 @@ const validateProduct = [
   check("name")
     .exists()
     .notEmpty()
-    .isLength({ min: 5, max: 20 })
+    .isLength({ min: 5, max: 100 })
     .withMessage("Please don't forget a title"),
 
   check("description")
     .exists()
     .notEmpty()
-    .isLength({ min: 5, max: 50 })
+    .isLength({ min: 5, max: 500 })
     .withMessage("Please don't forget a description"),
 
   check("code")
@@ -23,32 +23,14 @@ const validateProduct = [
   check("price")
     .exists()
     .notEmpty()
-    .isLength({ min: 5, max: 50 })
+    .isLength({ min: 1, max: 50 })
     .withMessage("Please don't forget a price"),
 
   check("category")
     .exists()
     .notEmpty()
-    .isLength({ min: 5, max: 50 })
+    .isLength({ min: 1, max: 50 })
     .withMessage("Please don't forget a category"),
-
-  check("shoes")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 50 })
-    .withMessage("Please don't forget a shoes tag"),
-
-  check("tshirt")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 50 })
-    .withMessage("Please don't forget a tshirt tag"),
-
-  check("smartwatch")
-    .exists()
-    .notEmpty()
-    .isLength({ min: 4, max: 50 })
-    .withMessage("Please don't forget a smartwatch tag"),
 
   check("stock")
     .exists()

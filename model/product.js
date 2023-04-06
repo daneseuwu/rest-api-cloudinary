@@ -7,7 +7,7 @@ const productSchema = new Schema(
       required: [true, "Please don't forget a title"],
     },
 
-    desciption: {
+    description: {
       type: String,
       required: [true, "Please don't forget a desciption"],
     },
@@ -30,16 +30,16 @@ const productSchema = new Schema(
     tag: {
       shoes: {
         type: String,
-        required: [true, "Please don't forget a tag"],
+        required: [false, "Please don't forget a tag"],
       },
       smartwatch: {
         type: String,
-        required: [true, "Please don't forget a tag"],
+        required: [false, "Please don't forget a tag"],
       },
 
       tshirt: {
         type: String,
-        required: [true, "Please don't forget a tshirt"],
+        required: [false, "Please don't forget a tshirt"],
       },
     },
 

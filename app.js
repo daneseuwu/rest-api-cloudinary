@@ -11,15 +11,15 @@ app.use(morgan('dev'))
 
 app.use(express.json())
 
-const whiteList = ['http://localhost:3000/api/post']
+const whiteList = ['http://localhost:3000']
+
 app.use(cors({ origin: whiteList }))
 
-app.use('/api', router)
+app.use('/api/v1', router)
 
 app.get('/', (req, res) => {
-    res.redirect('api/post')
+    res.redirect('api/v1/product')
 })
-
 
 conn()
 const port = process.env.port || 8000

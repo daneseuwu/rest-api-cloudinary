@@ -12,7 +12,7 @@ const validationResults = (req, res, next) => {
       errors: error.array(),
     });
 
-    console.log(err.mapped());
+    console.log(error.mapped());
     
   }
 };
