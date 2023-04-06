@@ -11,9 +11,42 @@ cloudinary.config({
 });
 
 async function uploadImage(filePath) {
-  return await cloudinary.uploader.upload(filePath, {
-    folder: "mistoresv",
-  });
+  try {
+    const result = await cloudinary.uploader.upload(filePath, {
+      folder: "mistoresv",
+    });
+
+    return result;
+  } catch (error) {
+    onsole.log(error);
+
+    throw new Error("Error al cargar la imagen en cloudinary");
+  }
 }
 
-module.exports = { uploadImage };
+async function deleteImage(publicId) {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId);
+    return result;
+  } catch (error) {
+    console.log(error);
+
+    throw new Error("Error al eliminar la imagen en cloudinary");
+  }
+}
+
+async function updateImage(publicId) {
+  try {
+    const result = await cloudinary.uploader.upload(newImagePath, {
+      public_id: publicId,
+    });
+    console.log(result);
+    return result.secure_url;
+  } catch (error) {
+    onsole.log(error);
+
+    throw new Error("Error al cargar la imagen en cloudinary");
+  }
+}
+
+module.exports = { uploadImage, deleteImage };

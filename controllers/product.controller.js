@@ -1,5 +1,6 @@
+const product = require("../models/product");
 const Product = require("../models/product");
-const { uploadImage } = require("../utils/cloudinary");
+const { uploadImage, deleteImage } = require("../utils/cloudinary");
 const fs = require("fs-extra");
 
 const findAllProduct = async (req, res, next) => {
@@ -53,7 +54,7 @@ const createProduct = async (req, res, next) => {
     if (req.files?.image) {
       const result = await uploadImage(req.files.image.tempFilePath);
       console.log(result);
-      
+
       product.image = {
         public_id: result.public_id,
         secure_url: result.secure_url,
@@ -100,14 +101,19 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Product.findByIdAndDelete({
       _id: id,
     });
 
-    return res.status(200).json({
-      status: 200,
-      message: "Delete Success",
-    });
+    if (!product)
+      return res.status(404).json({
+        message: "Producto no existe",
+      });
+
+    if (product.image.public_id) {
+      await deleteImage(product.image.public_id);
+    }
+
+    return res.json(product);
   } catch (error) {
     res.status(500).json({
       status: 500,

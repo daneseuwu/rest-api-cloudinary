@@ -1,5 +1,5 @@
 const { Router } = require("express");
-
+const fileUpload = require("express-fileupload");
 const {
   findAllProduct,
   findByIdProduct,
@@ -13,7 +13,15 @@ const router = Router();
 
 router.get("/", findAllProduct);
 router.get("/:id", findByIdProduct);
-router.post("/", validateProduct, createProduct);
+router.post(
+  "/",
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./uploads/",
+  }),
+  validateProduct,
+  createProduct
+);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 

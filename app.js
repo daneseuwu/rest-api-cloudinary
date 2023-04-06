@@ -4,19 +4,11 @@ const morgan = require("morgan");
 const { conn } = require("./config/mongo");
 const router = require("./routes/route");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
 
 require("dotenv").config();
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
-
-app.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "./uploads/",
-  })
-);
 
 const whiteList = ["http://localhost:3000"];
 
