@@ -25,6 +25,11 @@ const productSchema = new Schema(
       required: [true, "Please don't forget a price"],
     },
 
+    image: {
+      public_id: String,
+      secure_url: String,
+    },
+
     category: {
       type: String,
       required: [true, "Please don't forget a category"],
