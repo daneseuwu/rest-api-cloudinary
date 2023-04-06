@@ -9,10 +9,8 @@ require('dotenv').config()
 const app = express()
 app.use(morgan('dev'))
 
-// middleware
 app.use(express.json())
 
-//lista de control de acceso(origenes)
 const whiteList = ['http://localhost:3000/api/post']
 app.use(cors({ origin: whiteList }))
 
@@ -24,7 +22,7 @@ app.get('/', (req, res) => {
 
 
 conn()
-const port = process.env.PORT || 8000
+const port = process.env.port || 8000
 app.listen(port, () => {
 
     try {
