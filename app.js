@@ -18,7 +18,7 @@ app.use(cors({ origin: whiteList }))
 app.use('/api/v1', router)
 
 app.get('/', (req, res) => {
-    res.redirect('api/v1/product')
+    res.redirect('api/v1/products')
 })
 
 conn()
