@@ -1,5 +1,5 @@
-const { response } = require("mongoose");
 const Product = require("../models/product");
+const { uploadImage } = require("../utils/cloudinary");
 
 const findAllProduct = async (req, res, next) => {
   try {
@@ -38,22 +38,29 @@ const findByIdProduct = async (req, res, next) => {
 
 const createProduct = async (req, res, next) => {
   try {
+    const { name, description, code, price, category, stock } = req.body;
 
-    const product = req.body;
-    const data = new Product(product);
+    const product = new Product({
+      name,
+      description,
+      code,
+      price,
+      category,
+      stock,
+    });
 
-    if(req.files?.image){
-
-      
-
+    if (req.files?.image) {
+      const result = await uploadImage(req.files.image.tempFilePath);
+      console.log(result);
     }
 
-    data.save();
+    await product.save();
 
     return res.status(200).json({
       status: 200,
-      message: "Registration successful",
+      message: "Success"
     });
+
   } catch (error) {
     return res.status(500).json({
       status: 500,
