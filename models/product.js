@@ -14,11 +14,14 @@ const productSchema = new Schema(
 
     code: {
       type: String,
+      trim: true,
+      unique: true,
       required: [true, "Please don't forget a code"],
     },
 
     price: {
-      type: String,
+      type: Number,
+      default: 0,
       required: [true, "Please don't forget a price"],
     },
 
@@ -55,4 +58,4 @@ const productSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('product', productSchema);
+module.exports = mongoose.model("product", productSchema);

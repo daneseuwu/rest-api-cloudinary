@@ -1,5 +1,5 @@
 const { response } = require("mongoose");
-const Product = require("../model/product");
+const Product = require("../models/product");
 
 const findAllProduct = async (req, res, next) => {
   try {
@@ -59,7 +59,7 @@ const updateProduct = async (req, res, next) => {
     const { id } = req.params;
     const product = req.body;
 
-    await Product.updateOne({ _id: id }, product);
+    await Product.findByIdAndUpdate({ _id: id }, product);
 
     res.status(200).json({
       status: 200,
@@ -77,15 +77,14 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Product.deleteOne({
+    await Product.findByIdAndDelete({
       _id: id,
     });
 
     return res.status(200).json({
-      status:200,
-      message:"Delete Success"
-    })
-
+      status: 200,
+      message: "Delete Success",
+    });
   } catch (error) {
     res.status(500).json({
       status: 500,

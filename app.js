@@ -1,35 +1,43 @@
-const express = require('express')
-const colors = require('colors')
-const morgan = require('morgan')
-const { conn } = require('./config/mongo')
-const router = require('./route/route')
-const cors = require('cors')
+const express = require("express");
+const colors = require("colors");
+const morgan = require("morgan");
+const { conn } = require("./config/mongo");
+const router = require("./routes/route");
+const cors = require("cors");
+const fileUpload = require("express-fileupload");
 
-require('dotenv').config()
-const app = express()
-app.use(morgan('dev'))
+require("dotenv").config();
+const app = express();
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.use(express.json())
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
-const whiteList = ['http://localhost:3000']
+const whiteList = ["http://localhost:3000"];
 
-app.use(cors({ origin: whiteList }))
+app.use(cors({ origin: whiteList }));
 
-app.use('/api/v1', router)
+app.use("/api/v1", router);
 
-app.get('/', (req, res) => {
-    res.redirect('api/v1/products')
-})
+app.get("/", (req, res) => {
+  res.redirect("api/v1/products");
+});
 
-conn()
-const port = process.env.port || 8000
+conn();
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
-
-    try {
-        console.log(colors.blue(`Server listening successfully on port http://localhost:${port}`))
-
-    } catch (error) {
-        console.log(colors.red('Failed to listen on server port:', error))
-    }
-
-})
+  try {
+    console.log(
+      colors.blue(
+        `Server listening successfully on port http://localhost:${port}`
+      )
+    );
+  } catch (error) {
+    console.log(colors.red("Failed to listen on server port:", error));
+  }
+});

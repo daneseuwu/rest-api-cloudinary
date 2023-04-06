@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const validationResults = require("../util/handleValidator");
+const validationResults = require("../utils/handleValidator");
 
 const validateProduct = [
   check("name")

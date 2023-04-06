@@ -6,7 +6,7 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
-} = require("../controller/product.controller");
+} = require("../controllers/product.controller");
 const { validateProduct } = require("../validate/product.validate");
 
 const router = Router();
