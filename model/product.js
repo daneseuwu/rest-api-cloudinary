@@ -27,8 +27,19 @@ const productSchema = new Schema({
   },
 
   tag: {
-    type: String,
-    required: [true, "Please don't forget a tag"],
+    shoes: {
+      type: String,
+      required: [true, "Please don't forget a tag"],
+    },
+    smartwatch: {
+      type: String,
+      required: [true, "Please don't forget a tag"],
+    },
+
+    tshirt: {
+        type: String,
+        required: [true, "Please don't forget a tshirt"],
+      },
   },
 
   stock: {
