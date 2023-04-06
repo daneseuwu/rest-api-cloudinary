@@ -38,8 +38,16 @@ const findByIdProduct = async (req, res, next) => {
 
 const createProduct = async (req, res, next) => {
   try {
+
     const product = req.body;
     const data = new Product(product);
+
+    if(req.files?.image){
+
+      
+
+    }
+
     data.save();
 
     return res.status(200).json({
