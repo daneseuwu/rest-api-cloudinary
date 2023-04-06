@@ -2,7 +2,7 @@ const express = require('express')
 const colors = require('colors')
 const morgan = require('morgan')
 const { conn } = require('./config/mongo')
-const router = require('./routes/routes')
+const router = require('./route/route')
 const cors = require('cors')
 
 require('dotenv').config()
