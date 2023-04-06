@@ -47,9 +47,9 @@ const createProduct = async (req, res, next) => {
       message: "Registration successful",
     });
   } catch (error) {
-    return res.status(200).json({
-      status: 200,
-      message: "Registration Error",
+    return res.status(500).json({
+      status: 500,
+      message: "Error Internal Server",
     });
   }
 };
@@ -80,6 +80,12 @@ const deleteProduct = async (req, res, next) => {
     await Product.deleteOne({
       _id: id,
     });
+
+    return res.status(200).json({
+      status:200,
+      message:"Delete Success"
+    })
+
   } catch (error) {
     res.status(500).json({
       status: 500,
